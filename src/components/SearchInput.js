@@ -2,16 +2,23 @@ import React  from "react";
 
 class SearchInput extends React.Component{
 
-    onInputChange(event){
-        console.log(event.target.value)
+    constructor(props){
+        super(props);
+        this.state = {entry : ''};
+    }
+    onFormSubmit = (event) =>{
+        event.preventDefault();
+        console.log(this.state.entry)
     }
     render(){
         return (
             <div className="ui segment">
-                <form className="ui form" action="">
+                <form className="ui form" onSubmit={this.onFormSubmit}>
                     <div className="field">
                         <div className="ui massice icon input">
-                        <input type="text" placeholder="Search" onChange={this.onInputChange}/>
+                        <input type="text" placeholder="Search"
+                         onChange={(event) =>this.setState({entry : event.target.value})}
+                         value={this.state.entry} />
                         <i className="search icon"></i>
                         </div>
                         </div>                   
